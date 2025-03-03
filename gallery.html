@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Beautiful Moments</title>
+    <style>
+        /* Body Styling */
+        body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #fdb9c8, #f6c0c1); /* Soft pink gradient */
+    display: flex;
+    justify-content: center;  /* Centers content horizontally */
+    align-items: center;      /* Centers content vertically */
+    min-height: 100vh;        /* Ensure body height is at least the height of the viewport */
+    color: #333;
+    overflow-y: auto;         /* Enable vertical scrolling */
+    position: relative;       /* To position falling hearts */
+    flex-direction: column;
+}
+
+        /* Falling Hearts Animation */
+        @keyframes heartFall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Heart Shape */
+        .heart {
+            position: absolute;
+            top: -10%;
+            animation: heartFall linear infinite;
+            opacity: 0.9;
+            z-index: 0;
+            background-color: #ff4d88;
+            width: 30px;
+            height: 30px;
+            transform: rotate(-45deg);
+            clip-path: polygon(50% 0%, 100% 35%, 50% 100%, 0% 35%);
+        }
+
+        /* Random positioning for hearts */
+        .heart:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 30%; animation-duration: 10s; animation-delay: 1s; }
+        .heart:nth-child(3) { left: 50%; animation-duration: 9s; animation-delay: 2s; }
+        .heart:nth-child(4) { left: 70%; animation-duration: 11s; animation-delay: 0.5s; }
+        .heart:nth-child(5) { left: 90%; animation-duration: 7s; animation-delay: 2.5s; }
+        .heart:nth-child(6) { left: 15%; animation-duration: 12s; animation-delay: 1.5s; }
+        .heart:nth-child(7) { left: 80%; animation-duration: 13s; animation-delay: 0.2s; }
+        .heart:nth-child(8) { left: 60%; animation-duration: 9s; animation-delay: 3s; }
+        .heart:nth-child(9) { left: 20%; animation-duration: 15s; animation-delay: 1s; }
+        .heart:nth-child(10) { left: 40%; animation-duration: 10s; animation-delay: 1.5s; }
+
+        /* Container Styling */
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;  /* Full width of the screen */
+            max-width: 800px;  /* Max width of container */
+            box-sizing: border-box;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #ff4d88;
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px 15px;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        /* Gallery container adjustments */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            padding-bottom: 20px;
+            width: 100%;
+            overflow-x: auto; /* Allow horizontal scrolling */
+        }
+
+        /* Polaroid-style images */
+        .gallery .polaroid {
+            width: 100%;
+            height: 300px; /* Set a fixed height for consistency */
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        /* Ensure the image fills the entire Polaroid container */
+        .gallery img {
+            width: 100%;
+            height: 100%; /* Make sure the image fills the container */
+            object-fit: cover; /* Ensures the image covers the entire space */
+        }
+
+        /* Hover effect on images */
+        .gallery .polaroid:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Add polaroid bottom bar */
+        .gallery .polaroid:after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 10px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+
+        /* Style for video container */
+        .video-container {
+            margin-top: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .gallery .polaroid {
+                height: 250px; /* Adjust height on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: repeat(1, 1fr); /* 1 column on smaller screens */
+                padding: 5px;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .gallery .polaroid {
+                height: 200px; /* Adjust height on very small screens */
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .video-container {
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Falling Hearts -->
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+
+    <div class="container" id="page3">
+        <h1>Our Beautiful Moments</h1>
+        <div class="gallery">
+            <div class="polaroid">
+                <img src="she6.jpeg" alt="Photo 1">
+            </div>
+            <div class="polaroid">
+                <img src="she5.jpeg" alt="Photo 2">
+            </div>
+            <div class="polaroid">
+                <img src="she4.jpeg" alt="Photo 3">
+            </div>
+            <div class="polaroid">
+                <img src="she.jpeg" alt="Photo 4">
+            </div>
+            <div class="polaroid">
+                <img src="she3.jpeg" alt="Photo 5">
+            </div>
+            <div class="polaroid">
+                <img src="she2.jpeg" alt="Photo 6">
+            </div>
+        </div>
+
+        <!-- Video placed below the images gallery -->
+        <div class="video-container">
+            <video src="sheVidd.mp4" controls></video>
+        </div>
+    </div>
+
+</body>
+</html>
