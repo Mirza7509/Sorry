@@ -5,182 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Apology</title>
     <style>
-        /* General Styles */
+        /* Global Styles */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #fdb9c8, #f6c0c1);
+            background: linear-gradient(135deg, #fdb9c8, #f6c0c1); /* Soft pink gradient */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             color: #333;
-            flex-direction: column;
-            text-align: center;
             overflow: hidden;
+            text-align: center;
         }
 
-        /* Falling Hearts Animation */
+        /* Falling Hearts */
         @keyframes heartFall {
-            0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg) scale(0.7); opacity: 0; }
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
 
         .heart {
             position: absolute;
             top: -10%;
-            animation: heartFall 8s infinite ease-in-out;
+            animation: heartFall 10s infinite ease-in-out;
+            opacity: 0.8;
             background-color: #ff4d88;
             width: 20px;
             height: 20px;
             transform: rotate(-45deg);
             clip-path: polygon(50% 0%, 100% 35%, 50% 100%, 0% 35%);
-            opacity: 0.8;
         }
 
-        .heart:nth-child(1) { left: 5%; animation-duration: 7s; }
-        .heart:nth-child(2) { left: 25%; animation-duration: 9s; animation-delay: 1s; }
-        .heart:nth-child(3) { left: 50%; animation-duration: 8s; animation-delay: 2s; }
-        .heart:nth-child(4) { left: 75%; animation-duration: 10s; animation-delay: 0.5s; }
-        .heart:nth-child(5) { left: 95%; animation-duration: 6s; animation-delay: 2.5s; }
+        /* Small Floating Hearts */
+        .heart:nth-child(1) { left: 5%; animation-duration: 8s; }
+        .heart:nth-child(2) { left: 25%; animation-duration: 10s; animation-delay: 1s; }
+        .heart:nth-child(3) { left: 50%; animation-duration: 9s; animation-delay: 2s; }
+        .heart:nth-child(4) { left: 75%; animation-duration: 11s; animation-delay: 0.5s; }
+        .heart:nth-child(5) { left: 95%; animation-duration: 7s; animation-delay: 2.5s; }
 
-        /* Polaroid Effect */
-        .photo {
-            width: 100px;
-            height: 100px;
-            border-radius: 10px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-            transform: rotate(-5deg);
-            transition: transform 0.5s ease-in-out;
-            cursor: pointer;
-        }
-
-        .photo:hover {
-            transform: rotate(5deg) scale(1.1);
-        }
-
-        /* Container */
+        /* Smaller Container */
         .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 20px;
-            width: 90%;
-            max-width: 350px;
+            width: 85%;
+            max-width: 320px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             z-index: 1;
-            transition: 0.3s;
+        }
+
+        /* Polaroid Image */
+        .polaroid {
+            width: 80%;
+            max-width: 160px;
+            border: 8px solid white;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            transform: rotate(-5deg);
+            margin-bottom: 15px;
         }
 
         h1 {
             font-size: 22px;
             color: #ff4d88;
+            font-family: 'Poppins', sans-serif;
             margin-bottom: 10px;
         }
 
-        /* Hidden message animation */
-        .hidden-message {
+        p {
             font-size: 14px;
             color: #5c4d61;
-            line-height: 1.5;
-            display: none;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
+            line-height: 1.4;
         }
 
-        /* Reveal Button */
-        .reveal-btn {
+        /* Input Field */
+        input[type="date"] {
+            padding: 8px;
+            font-size: 14px;
+            margin-top: 8px;
+            border-radius: 6px;
+            border: 2px solid #ff4d88;
+            width: 90%;
+            max-width: 220px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Button */
+        button {
             background-color: #ff4d88;
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 10px 25px;
             border-radius: 20px;
             font-size: 14px;
             cursor: pointer;
-            margin-top: 10px;
-            transition: 0.3s;
-            width: 100%;
-            max-width: 250px;
-            box-shadow: 0 4px 10px rgba(255, 77, 136, 0.3);
+            margin-top: 12px;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
-        .reveal-btn:hover {
+        button:hover {
             background-color: #ff3385;
-            box-shadow: 0 6px 15px rgba(255, 77, 136, 0.5);
+            transform: scale(1.05);
         }
 
-        /* Song Player */
-        .song-player {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            color: white;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
-            z-index: 10;
-        }
-
-        .song-info {
-            display: flex;
-            align-items: center;
-            margin-right: 10px;
-        }
-
-        .song-info img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .song-info .info {
-            text-align: left;
-        }
-
-        .song-info h3 {
-            font-size: 16px;
-            margin: 0;
-        }
-
-        .song-info p {
+        /* Error Message */
+        #errorMessage {
+            color: #ff3333;
             font-size: 12px;
-            margin: 0;
+            margin-top: 8px;
         }
 
-        audio {
-            width: 200px;
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 20px;
-            }
-
-            .photo {
-                width: 80px;
-                height: 80px;
-            }
-
-            .song-info img {
-                width: 50px;
-                height: 50px;
-            }
-
-            .song-info h3 {
-                font-size: 14px;
-            }
-
-            audio {
-                width: 180px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -192,36 +132,32 @@
     <div class="heart"></div>
     <div class="heart"></div>
 
-    <!-- Main Content -->
     <div class="container">
-        <img src="she4.jpeg" class="photo" alt="Our Photo">
-        <h1>My Dearest ..........,</h1>
-        
-        <p class="hidden-message">I'm truly sorry for [..........]. This is not easy for me to say, but I want you to know that I deeply regret my actions. I value everything we have and don’t want to lose it. Please forgive me. I promise to make things right.</p>
-        
-        <button class="reveal-btn" onclick="revealMessage()">Click to Reveal</button>
-    </div>
-
-    <!-- Song Player -->
-    <div class="song-player">
-        <div class="song-info">
-            <img src="she4.jpeg" alt="Your Photo">
-            <div class="info">
-                <h3>I'm Sorry</h3>
-                <p>Ali Gatie</p>
-            </div>
+        <!-- Polaroid Image -->
+        <div class="polaroid">
+            <img src="she3.jpeg" alt="Your Photo" style="width: 100%;" />
         </div>
-        <audio controls>
-            <source src="Ali%20Gatie%20-%20I'm%20Sorry%20(Lyrics).mp3" type="audio/mp3">
-            Your browser does not support the audio element.
-        </audio>
+        
+        <!-- Content -->
+        <div>
+            <h1>Welcome, Love</h1>
+            <p>Enter our anniversary date to continue:</p>
+            <input type="date" id="anniversaryDate" />
+            <button onclick="checkPassword()">Submit</button>
+            <p id="errorMessage"></p>
+        </div>
     </div>
 
     <script>
-        function revealMessage() {
-            const message = document.querySelector('.hidden-message');
-            message.style.display = 'block';
-            setTimeout(() => message.style.opacity = '1', 100);
+        function checkPassword() {
+            const enteredDate = document.getElementById('anniversaryDate').value;
+            const correctDate = '2022-05-14'; // Your actual anniversary date
+
+            if (enteredDate === correctDate) {
+                window.location.href = 'letter.html';
+            } else {
+                document.getElementById('errorMessage').textContent = "The date is incorrect, please try again!";
+            }
         }
     </script>
 
