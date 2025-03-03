@@ -16,95 +16,63 @@
             align-items: center;
             height: 100vh;
             color: #333;
-            overflow-x: hidden;
+            overflow: hidden;
             position: relative;
+            text-align: center;
         }
 
         /* Falling Hearts Animation */
         @keyframes heartFall {
-            0% {
-                transform: translateY(-10vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Heart Shape */
         .heart {
             position: absolute;
             top: -10%;
             animation: heartFall 10s infinite ease-in-out;
-            opacity: 0.9;
+            opacity: 0.8;
             z-index: 0;
             background-color: #ff4d88;
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             transform: rotate(-45deg);
             clip-path: polygon(50% 0%, 100% 35%, 50% 100%, 0% 35%);
         }
 
-        /* Random positioning */
-        .heart:nth-child(1) { 
-            left: 10%; 
-            animation-duration: 8s; 
-            animation-delay: 0s; 
-        }
-        .heart:nth-child(2) { 
-            left: 30%; 
-            animation-duration: 10s; 
-            animation-delay: 1s; 
-        }
-        .heart:nth-child(3) { 
-            left: 50%; 
-            animation-duration: 9s; 
-            animation-delay: 2s; 
-        }
-        .heart:nth-child(4) { 
-            left: 70%; 
-            animation-duration: 11s; 
-            animation-delay: 0.5s; 
-        }
-        .heart:nth-child(5) { 
-            left: 90%; 
-            animation-duration: 7s; 
-            animation-delay: 2.5s; 
-        }
-        .heart:nth-child(6) { 
-            left: 15%; 
-            animation-duration: 12s; 
-            animation-delay: 1.5s; 
-        }
+        .heart:nth-child(1) { left: 5%; animation-duration: 8s; }
+        .heart:nth-child(2) { left: 25%; animation-duration: 10s; animation-delay: 1s; }
+        .heart:nth-child(3) { left: 50%; animation-duration: 9s; animation-delay: 2s; }
+        .heart:nth-child(4) { left: 75%; animation-duration: 11s; animation-delay: 0.5s; }
+        .heart:nth-child(5) { left: 95%; animation-duration: 7s; animation-delay: 2.5s; }
+        .heart:nth-child(6) { left: 15%; animation-duration: 12s; animation-delay: 1.5s; }
 
-        /* Container styling */
+        /* Container Styling */
         .container {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            padding: 30px;
             width: 90%;
-            max-width: 800px;
-            position: relative;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             z-index: 1;
         }
 
+        /* Polaroid Image */
         .polaroid {
-            width: 200px;
-            height: 250px;
-            margin-right: 30px;
+            width: 80%;
+            max-width: 200px;
             border: 10px solid white;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             background-color: white;
             position: relative;
             overflow: hidden;
-            transform: rotate(-10deg);
+            transform: rotate(-8deg);
             transition: transform 0.3s ease-in-out;
+            margin-bottom: 20px;
         }
 
         .polaroid:hover {
@@ -113,44 +81,37 @@
 
         .polaroid img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
         }
 
         h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
+            font-size: 28px;
             color: #ff4d88;
             font-family: 'Poppins', sans-serif;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            animation: bounceIn 1s ease-in-out;
-        }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0); opacity: 0; }
-            60% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); }
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
         }
 
         p {
-            font-size: 18px;
-            margin-bottom: 30px;
+            font-size: 16px;
             color: #5c4d61;
-            line-height: 1.8;
+            line-height: 1.6;
             font-weight: 500;
         }
 
         /* Input Styles */
         input[type="date"] {
-            padding: 12px 20px;
+            padding: 12px;
             font-size: 16px;
             margin-top: 10px;
             border-radius: 8px;
             border: 2px solid #ff4d88;
-            width: 70%;
+            width: 90%;
+            max-width: 300px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             outline: none;
+            text-align: center;
         }
 
         input[type="date"]:focus {
@@ -163,12 +124,12 @@
             background-color: #ff4d88;
             color: white;
             border: none;
-            padding: 15px 40px;
+            padding: 12px 30px;
             border-radius: 30px;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease-in-out;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         button:hover {
@@ -181,39 +142,16 @@
             color: #ff3333;
             font-weight: bold;
             margin-top: 10px;
-            font-size: 16px;
+            font-size: 14px;
         }
 
-        /* Media Queries for Responsiveness */
+        /* Media Queries */
         @media (max-width: 480px) {
-            h1 {
-                font-size: 28px;
-            }
-
-            p {
-                font-size: 16px;
-            }
-
-            input[type="date"] {
-                width: 80%;
-            }
-
-            button {
-                padding: 12px 30px;
-                font-size: 16px;
-            }
-
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .polaroid {
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
+            h1 { font-size: 24px; }
+            p { font-size: 14px; }
+            input[type="date"] { font-size: 14px; }
+            button { font-size: 14px; padding: 10px 25px; }
         }
-
     </style>
 </head>
 <body>
@@ -227,12 +165,12 @@
     <div class="heart"></div>
 
     <div class="container" id="page1">
-        <!-- Polaroid Image on the Left -->
+        <!-- Polaroid Image -->
         <div class="polaroid">
             <img src="she3.jpeg" alt="Your Photo" />
         </div>
         
-        <!-- Content on the Right -->
+        <!-- Content -->
         <div>
             <h1>Welcome, Love</h1>
             <p>To begin, please enter our anniversary date:</p>
@@ -245,7 +183,7 @@
     <script>
         function checkPassword() {
             const enteredDate = document.getElementById('anniversaryDate').value;
-            const correctDate = '2022-05-14'; // Replace this with your actual anniversary date
+            const correctDate = '2022-05-14'; // Your actual anniversary date
 
             if (enteredDate === correctDate) {
                 window.location.href = 'letter.html';
