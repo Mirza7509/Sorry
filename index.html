@@ -17,11 +17,10 @@
             height: 100vh;
             color: #333;
             overflow: hidden;
-            position: relative;
             text-align: center;
         }
 
-        /* Falling Hearts Animation */
+        /* Falling Hearts */
         @keyframes heartFall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
@@ -32,104 +31,82 @@
             top: -10%;
             animation: heartFall 10s infinite ease-in-out;
             opacity: 0.8;
-            z-index: 0;
             background-color: #ff4d88;
-            width: 25px;
-            height: 25px;
+            width: 20px;
+            height: 20px;
             transform: rotate(-45deg);
             clip-path: polygon(50% 0%, 100% 35%, 50% 100%, 0% 35%);
         }
 
+        /* Small Floating Hearts */
         .heart:nth-child(1) { left: 5%; animation-duration: 8s; }
         .heart:nth-child(2) { left: 25%; animation-duration: 10s; animation-delay: 1s; }
         .heart:nth-child(3) { left: 50%; animation-duration: 9s; animation-delay: 2s; }
         .heart:nth-child(4) { left: 75%; animation-duration: 11s; animation-delay: 0.5s; }
         .heart:nth-child(5) { left: 95%; animation-duration: 7s; animation-delay: 2.5s; }
-        .heart:nth-child(6) { left: 15%; animation-duration: 12s; animation-delay: 1.5s; }
 
-        /* Container Styling */
+        /* Smaller Container */
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            width: 85%;
+            max-width: 320px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             z-index: 1;
         }
 
         /* Polaroid Image */
         .polaroid {
             width: 80%;
-            max-width: 200px;
-            border: 10px solid white;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 160px;
+            border: 8px solid white;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             background-color: white;
-            position: relative;
-            overflow: hidden;
-            transform: rotate(-8deg);
-            transition: transform 0.3s ease-in-out;
-            margin-bottom: 20px;
-        }
-
-        .polaroid:hover {
-            transform: rotate(0deg);
-        }
-
-        .polaroid img {
-            width: 100%;
-            height: auto;
-        }
-
-        h1 {
-            font-size: 28px;
-            color: #ff4d88;
-            font-family: 'Poppins', sans-serif;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            transform: rotate(-5deg);
             margin-bottom: 15px;
         }
 
-        p {
-            font-size: 16px;
-            color: #5c4d61;
-            line-height: 1.6;
-            font-weight: 500;
+        h1 {
+            font-size: 22px;
+            color: #ff4d88;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 10px;
         }
 
-        /* Input Styles */
+        p {
+            font-size: 14px;
+            color: #5c4d61;
+            line-height: 1.4;
+        }
+
+        /* Input Field */
         input[type="date"] {
-            padding: 12px;
-            font-size: 16px;
-            margin-top: 10px;
-            border-radius: 8px;
+            padding: 8px;
+            font-size: 14px;
+            margin-top: 8px;
+            border-radius: 6px;
             border: 2px solid #ff4d88;
             width: 90%;
-            max-width: 300px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            outline: none;
+            max-width: 220px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
-        input[type="date"]:focus {
-            border-color: #ff3385;
-            box-shadow: 0 0 10px rgba(255, 51, 133, 0.6);
-        }
-
-        /* Button Styles */
+        /* Button */
         button {
             background-color: #ff4d88;
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-size: 16px;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 14px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
-            margin-top: 15px;
+            margin-top: 12px;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         button:hover {
@@ -137,43 +114,34 @@
             transform: scale(1.05);
         }
 
-        /* Error message */
+        /* Error Message */
         #errorMessage {
             color: #ff3333;
-            font-weight: bold;
-            margin-top: 10px;
-            font-size: 14px;
+            font-size: 12px;
+            margin-top: 8px;
         }
 
-        /* Media Queries */
-        @media (max-width: 480px) {
-            h1 { font-size: 24px; }
-            p { font-size: 14px; }
-            input[type="date"] { font-size: 14px; }
-            button { font-size: 14px; padding: 10px 25px; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Falling Heart Effect -->
-    <div class="heart"></div>
+    <!-- Falling Hearts -->
     <div class="heart"></div>
     <div class="heart"></div>
     <div class="heart"></div>
     <div class="heart"></div>
     <div class="heart"></div>
 
-    <div class="container" id="page1">
+    <div class="container">
         <!-- Polaroid Image -->
         <div class="polaroid">
-            <img src="she3.jpeg" alt="Your Photo" />
+            <img src="she3.jpeg" alt="Your Photo" style="width: 100%;" />
         </div>
         
         <!-- Content -->
         <div>
             <h1>Welcome, Love</h1>
-            <p>To begin, please enter our anniversary date:</p>
+            <p>Enter our anniversary date to continue:</p>
             <input type="date" id="anniversaryDate" />
             <button onclick="checkPassword()">Submit</button>
             <p id="errorMessage"></p>
