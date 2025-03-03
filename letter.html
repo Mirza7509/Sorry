@@ -69,6 +69,54 @@
             transition: opacity 1s ease-in-out;
             white-space: pre-line;
         }
+
+        /* Song Player */
+        .song-player {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .song-info {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+        .song-info img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .song-info .info {
+            text-align: left;
+        }
+
+        .song-info h3 {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .song-info p {
+            font-size: 12px;
+            margin: 0;
+        }
+
+        audio {
+            width: 200px;
+        }
     </style>
 </head>
 <body>
@@ -91,6 +139,21 @@ You are my greatest gift 🎁, my sunshine on dark days ☀️, and the one pers
 
 Forever yours, ❤️</p>
         <button class="button" id="revealButton" onclick="revealMessage()">Click to Reveal</button>
+    </div>
+
+    <!-- Song Player -->
+    <div class="song-player">
+        <div class="song-info">
+            <img src="she4.jpeg" alt="Your Photo">
+            <div class="info">
+                <h3>I'm Sorry</h3>
+                <p>Ali Gatie</p>
+            </div>
+        </div>
+        <audio controls autoplay>
+            <source src="Ali%20Gatie%20-%20I'm%20Sorry%20(Lyrics).mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
     </div>
 
     <script>
