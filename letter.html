@@ -21,39 +21,16 @@
             overflow: hidden;
         }
 
-        /* Falling Hearts Animation */
-        @keyframes heartFall {
-            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
-
-        .heart {
-            position: absolute;
-            top: -10%;
-            animation: heartFall 10s infinite ease-in-out;
-            opacity: 0.8;
-            background-color: #ff4d88;
-            width: 20px;
-            height: 20px;
-            transform: rotate(-45deg);
-            clip-path: polygon(50% 0%, 100% 35%, 50% 100%, 0% 35%);
-        }
-
-        .heart:nth-child(1) { left: 5%; animation-duration: 8s; }
-        .heart:nth-child(2) { left: 25%; animation-duration: 10s; animation-delay: 1s; }
-        .heart:nth-child(3) { left: 50%; animation-duration: 9s; animation-delay: 2s; }
-        .heart:nth-child(4) { left: 75%; animation-duration: 11s; animation-delay: 0.5s; }
-        .heart:nth-child(5) { left: 95%; animation-duration: 7s; animation-delay: 2.5s; }
-
         /* Container */
         .container {
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
-            padding: 15px;
+            padding: 20px;
             width: 90%;
             max-width: 350px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             z-index: 1;
+            transition: 0.3s;
         }
 
         h1 {
@@ -62,13 +39,18 @@
             margin-bottom: 10px;
         }
 
-        p {
+        /* Hidden message */
+        .hidden-message {
             font-size: 14px;
             color: #5c4d61;
             line-height: 1.5;
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
-        button {
+        /* Button */
+        .button {
             background-color: #ff4d88;
             color: white;
             border: none;
@@ -80,10 +62,12 @@
             transition: 0.3s;
             width: 100%;
             max-width: 250px;
+            box-shadow: 0 4px 10px rgba(255, 77, 136, 0.3);
         }
 
-        button:hover {
+        .button:hover {
             background-color: #ff3385;
+            box-shadow: 0 6px 15px rgba(255, 77, 136, 0.5);
         }
 
         /* Song Player */
@@ -134,50 +118,17 @@
             width: 200px;
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 20px;
-            }
-
-            p {
-                font-size: 13px;
-            }
-
-            button {
-                padding: 10px 20px;
-                font-size: 13px;
-            }
-
-            .song-info img {
-                width: 50px;
-                height: 50px;
-            }
-
-            .song-info h3 {
-                font-size: 14px;
-            }
-
-            audio {
-                width: 180px;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Falling Hearts -->
-    <div class="heart"></div>
-    <div class="heart"></div>
-    <div class="heart"></div>
-    <div class="heart"></div>
-    <div class="heart"></div>
-
     <!-- Main Content -->
     <div class="container">
         <h1>My Dearest ..........,</h1>
-        <p>I'm truly sorry for [..........]. This is not easy for me to say, but I want you to know that I am deeply regretful of my actions. I value everything we have and don't want to lose it. Please forgive me, and know that I'm committed to making things right.</p>
-        <button onclick="window.location.href='gallery.html'">See Our Memories</button>
+        
+        <p class="hidden-message">I'm truly sorry for [..........]. This is not easy for me to say, but I want you to know that I deeply regret my actions. I value everything we have and don’t want to lose it. Please forgive me. I promise to make things right.</p>
+        
+        <button class="button" id="revealButton" onclick="revealMessage()">Click to Reveal</button>
     </div>
 
     <!-- Song Player -->
@@ -189,11 +140,28 @@
                 <p>Ali Gatie</p>
             </div>
         </div>
-        <audio controls>
+        <audio controls autoplay>
             <source src="Ali%20Gatie%20-%20I'm%20Sorry%20(Lyrics).mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
     </div>
+
+    <script>
+        function revealMessage() {
+            const message = document.querySelector('.hidden-message');
+            const revealButton = document.getElementById('revealButton');
+
+            // Show message
+            message.style.display = 'block';
+            setTimeout(() => message.style.opacity = '1', 100);
+
+            // Change button to "Go to Next Page"
+            setTimeout(() => {
+                revealButton.innerText = 'Go to Next Page';
+                revealButton.setAttribute('onclick', "window.location.href='gallery.html'");
+            }, 1500);
+        }
+    </script>
 
 </body>
 </html>
