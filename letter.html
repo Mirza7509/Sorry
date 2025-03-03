@@ -5,23 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Apology</title>
     <style>
-        /* Global Styles */
+        /* General Styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #fdb9c8, #f6c0c1); /* Soft pink gradient */
+            background: linear-gradient(135deg, #fdb9c8, #f6c0c1);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            color: #333;
-            text-align: center;
             flex-direction: column;
-            overflow-y: auto; /* ENABLE SCROLLING */
+            text-align: center;
+            min-height: 100vh; /* Allow content to expand */
+            overflow-x: hidden; /* Keep hearts inside the screen */
         }
 
-        /* Falling Hearts */
+        /* Falling Hearts Animation */
         @keyframes heartFall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
@@ -30,7 +29,7 @@
         .heart {
             position: absolute;
             top: -10%;
-            animation: heartFall 10s infinite ease-in-out;
+            animation: heartFall 5s infinite linear;
             opacity: 0.8;
             background-color: #ff4d88;
             width: 20px;
@@ -39,129 +38,65 @@
             clip-path: polygon(50% 0%, 100% 35%, 50% 100%, 0% 35%);
         }
 
-        /* Floating Hearts */
-        .heart:nth-child(1) { left: 5%; animation-duration: 8s; }
-        .heart:nth-child(2) { left: 25%; animation-duration: 10s; animation-delay: 1s; }
-        .heart:nth-child(3) { left: 50%; animation-duration: 9s; animation-delay: 2s; }
-        .heart:nth-child(4) { left: 75%; animation-duration: 11s; animation-delay: 0.5s; }
-        .heart:nth-child(5) { left: 95%; animation-duration: 7s; animation-delay: 2.5s; }
-
         /* Container */
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 20px;
-            width: 85%;
-            max-width: 320px;
+            width: 90%;
+            max-width: 350px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             z-index: 1;
-            margin: 20px 0; /* Ensure space for scrolling */
-        }
-
-        /* Polaroid Image */
-        .polaroid {
-            width: 80%;
-            max-width: 160px;
-            border: 8px solid white;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            background-color: white;
-            transform: rotate(-5deg);
-            margin-bottom: 15px;
+            transition: 0.3s;
+            position: relative;
+            max-height: 80vh; /* Prevent it from taking too much space */
+            overflow-y: auto; /* Allow scrolling inside container */
         }
 
         h1 {
             font-size: 22px;
             color: #ff4d88;
-            font-family: 'Poppins', sans-serif;
             margin-bottom: 10px;
         }
 
-        p {
+        /* Hidden message */
+        .hidden-message {
             font-size: 14px;
             color: #5c4d61;
-            line-height: 1.4;
+            line-height: 1.5;
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
-
-        /* Input Field */
-        input[type="date"] {
-            padding: 8px;
-            font-size: 14px;
-            margin-top: 8px;
-            border-radius: 6px;
-            border: 2px solid #ff4d88;
-            width: 90%;
-            max-width: 220px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        /* Button */
-        button {
-            background-color: #ff4d88;
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 20px;
-            font-size: 14px;
-            cursor: pointer;
-            margin-top: 12px;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        button:hover {
-            background-color: #ff3385;
-            transform: scale(1.05);
-        }
-
-        /* Error Message */
-        #errorMessage {
-            color: #ff3333;
-            font-size: 12px;
-            margin-top: 8px;
-        }
-
     </style>
 </head>
 <body>
-
     <!-- Falling Hearts -->
     <div class="heart"></div>
     <div class="heart"></div>
     <div class="heart"></div>
     <div class="heart"></div>
-    <div class="heart"></div>
 
+    <!-- Main Content -->
     <div class="container">
-        <!-- Polaroid Image -->
-        <div class="polaroid">
-            <img src="she3.jpeg" alt="Your Photo" style="width: 100%;" />
-        </div>
-        
-        <!-- Content -->
-        <div>
-            <h1>Welcome, Love</h1>
-            <p>Enter our anniversary date to continue:</p>
-            <input type="date" id="anniversaryDate" />
-            <button onclick="checkPassword()">Submit</button>
-            <p id="errorMessage"></p>
-        </div>
+        <h1>My Dearest Girl,</h1>
+        <p class="hidden-message">💖 My Dearest Love, 💖 I don’t know where to begin, but first and foremost, I am deeply sorry 😔...</p>
+        <button class="button" id="revealButton" onclick="revealMessage()">Click to Reveal</button>
     </div>
 
     <script>
-        function checkPassword() {
-            const enteredDate = document.getElementById('anniversaryDate').value;
-            const correctDate = '2022-05-14'; // Your actual anniversary date
+        function revealMessage() {
+            const message = document.querySelector('.hidden-message');
+            const revealButton = document.getElementById('revealButton');
 
-            if (enteredDate === correctDate) {
-                window.location.href = 'letter.html';
-            } else {
-                document.getElementById('errorMessage').textContent = "The date is incorrect, please try again!";
-            }
+            message.style.display = 'block';
+            setTimeout(() => message.style.opacity = '1', 100);
+
+            setTimeout(() => {
+                revealButton.innerText = 'Go to Next Page';
+                revealButton.setAttribute('onclick', "window.location.href='gallery.html'");
+            }, 1500);
         }
     </script>
-
 </body>
 </html>
